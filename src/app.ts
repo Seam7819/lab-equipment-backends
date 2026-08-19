@@ -14,7 +14,7 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 app.use(express.json());
 dotenv.config();
 
-app.use("/", router);
+app.use("/api/auth", router);
 
 
 export default app;

@@ -7,7 +7,16 @@ export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql", // or "mysql", "postgresql", ...etc
     }),
+
+    trustedOrigins: [process.env.Frontend_URL!],
     emailAndPassword: { 
     enabled: true, 
   }, 
+  socialProviders: {
+    github: {
+      clientId: process.env.GITHUB_CLIENT_ID as string,
+      clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+      redirectURI: `${process.env.Frontend_URL}/api/auth/callback/github`,
+    },
+  },
 });
